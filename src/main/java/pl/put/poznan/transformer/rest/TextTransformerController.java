@@ -2,6 +2,8 @@ package pl.put.poznan.transformer.rest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
+import pl.put.poznan.transformer.logic.EliminateDuplicatesTransformer;
+import pl.put.poznan.transformer.logic.SequenceTransformer;
 import pl.put.poznan.transformer.logic.TextTransformer;
 
 import java.util.Arrays;
@@ -21,8 +23,7 @@ public class TextTransformerController {
         logger.debug(text);
         logger.debug(Arrays.toString(transforms));
 
-        // do the transformation, you should run your logic here, below just a silly example
-        TextTransformer transformer = new TextTransformer(transforms);
+        TextTransformer transformer = new EliminateDuplicatesTransformer();
         return transformer.transform(text);
     }
 
@@ -35,7 +36,7 @@ public class TextTransformerController {
         logger.debug(Arrays.toString(transforms));
 
         // do the transformation, you should run your logic here, below just a silly example
-        TextTransformer transformer = new TextTransformer(transforms);
+        SequenceTransformer transformer = new SequenceTransformer(transforms);
         return transformer.transform(text);
     }
 
