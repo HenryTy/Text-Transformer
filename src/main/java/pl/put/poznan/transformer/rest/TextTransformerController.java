@@ -3,7 +3,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 import pl.put.poznan.transformer.logic.EliminateDuplicatesTransformer;
-import pl.put.poznan.transformer.logic.SequenceTransformer;
+import pl.put.poznan.transformer.logic.ToUpperTransformer;
+import pl.put.poznan.transformer.logic.ToLowerTransformer;
+import pl.put.poznan.transformer.logic.CapitalizeTransformer;
 import pl.put.poznan.transformer.logic.TextTransformer;
 
 import java.util.Arrays;
@@ -23,7 +25,7 @@ public class TextTransformerController {
         logger.debug(text);
         logger.debug(Arrays.toString(transforms));
 
-        TextTransformer transformer = new EliminateDuplicatesTransformer();
+        TextTransformer transformer = new CapitalizeTransformer();
         return transformer.transform(text);
     }
 
@@ -36,7 +38,7 @@ public class TextTransformerController {
         logger.debug(Arrays.toString(transforms));
 
         // do the transformation, you should run your logic here, below just a silly example
-        SequenceTransformer transformer = new SequenceTransformer(transforms);
+        TextTransformer transformer = new CapitalizeTransformer();
         return transformer.transform(text);
     }
 
