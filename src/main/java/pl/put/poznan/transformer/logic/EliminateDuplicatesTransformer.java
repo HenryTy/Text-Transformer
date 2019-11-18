@@ -1,9 +1,15 @@
 package pl.put.poznan.transformer.logic;
 
-public class EliminateDuplicatesTransformer implements TextTransformer {
+public class EliminateDuplicatesTransformer extends TextTransformerDecorator {
+
+    public EliminateDuplicatesTransformer(TextTransformer textTransformer) {
+        super(textTransformer);
+    }
 
     @Override
     public String transform(String text) {
+        text = super.transform(text);
+
         String[] words = text.split(" ");
         StringBuilder resultBuilder = new StringBuilder();
 

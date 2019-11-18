@@ -1,8 +1,14 @@
 package pl.put.poznan.transformer.logic;
 
-public class AbbreviationToFullFormTransformer implements TextTransformer {
+public class AbbreviationToFullFormTransformer extends TextTransformerDecorator {
+
+    public AbbreviationToFullFormTransformer(TextTransformer textTransformer) {
+        super(textTransformer);
+    }
 
     public String transform(String text){
+        text = super.transform(text);
+
         String[] words = text.split(" ");
         StringBuilder resultBuilder = new StringBuilder();
 

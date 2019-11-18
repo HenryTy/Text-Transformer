@@ -1,48 +1,25 @@
 package pl.put.poznan.transformer.rest;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pl.put.poznan.transformer.logic.EliminateDuplicatesTransformer;
-import pl.put.poznan.transformer.logic.ToUpperTransformer;
-import pl.put.poznan.transformer.logic.ToLowerTransformer;
-import pl.put.poznan.transformer.logic.CapitalizeTransformer;
-import pl.put.poznan.transformer.logic.TextTransformer;
-
-import java.util.Arrays;
-
+import pl.put.poznan.transformer.error.BadTransformationException;
+import pl.put.poznan.transformer.logic.SequenceTransformer;
 
 @RestController
 @RequestMapping("/{text}")
 public class TextTransformerController {
 
-    private static final Logger logger = LoggerFactory.getLogger(TextTransformerController.class);
-
     @RequestMapping(method = RequestMethod.GET, produces = "application/json")
-    public String get(@PathVariable String text,
-                              @RequestParam(value="transforms", defaultValue="upper,escape") String[] transforms) {
+    public ResponseEntity<String> get(@PathVariable String text,
+                              @RequestParam(value="transforms", defaultValue="upper") String[] transforms) {
 
-        // log the parameters
-        logger.debug(text);
-        logger.debug(Arrays.toString(transforms));
-
-        TextTransformer transformer = new CapitalizeTransformer();
-        return transformer.transform(text);
+        try {
+            SequenceTransformer transformer = new SequenceTransformer(transforms);
+            return new ResponseEntity<>(transformer.transform(text), HttpStatus.OK);
+        } catch (BadTransformationException ex) {
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
-
-    @RequestMapping(method = RequestMethod.POST, produces = "application/json")
-    public String post(@PathVariable String text,
-                      @RequestBody String[] transforms) {
-
-        // log the parameters
-        logger.debug(text);
-        logger.debug(Arrays.toString(transforms));
-
-        // do the transformation, you should run your logic here, below just a silly example
-        TextTransformer transformer = new CapitalizeTransformer();
-        return transformer.transform(text);
-    }
-
-
 
 }
 
