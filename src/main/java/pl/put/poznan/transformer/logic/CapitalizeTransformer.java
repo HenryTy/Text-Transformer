@@ -11,7 +11,7 @@ public class CapitalizeTransformer extends TextTransformerDecorator {
     /**
      * konstruktor tworzacy obiekt dekorujacy podany TextTransformer
      *
-     *@param param textTransformer typu TextTransformer
+     *@param textTransformer typu TextTransformer
      */
 
     public CapitalizeTransformer(TextTransformer textTransformer) {
@@ -21,7 +21,7 @@ public class CapitalizeTransformer extends TextTransformerDecorator {
     /**
      * Metoda zamieniajaca pierwsza litere wszystkich slow w tekscie na duza
      *
-     * @param parametr text typu String przechowuje tekst majacy zostac poddany transformacji
+     * @param text typu String przechowuje tekst majacy zostac poddany transformacji
      * @return zwracany jest tekst, w ktorym pierwsze litery slow zostaly zamienione na duze
      *
      */
