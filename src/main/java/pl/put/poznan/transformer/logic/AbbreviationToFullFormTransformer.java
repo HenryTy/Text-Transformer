@@ -1,10 +1,30 @@
 package pl.put.poznan.transformer.logic;
 
+/**
+ * Klasa sluzaca do rozwijania skrotow wystepujacych w podanym tekscie na pelne formy
+ *
+ * @version 1.0
+ */
+
 public class AbbreviationToFullFormTransformer extends TextTransformerDecorator {
+
+    /**
+     * konstruktor tworzacy obiekt dekorujacy podany TextTransformer
+     *
+     *@param param textTransformer typu TextTransformer
+     */
 
     public AbbreviationToFullFormTransformer(TextTransformer textTransformer) {
         super(textTransformer);
     }
+
+    /**
+     * Metoda rozwijajaca skroty wystepujace w podanym tekscie na pelne formy
+     *
+     * @param parametr text typu String przechowuje tekst majacy zostac poddany transformacji
+     * @return zwracany jest tekst, w ktorym wszystkie zdefiniowane skroty: prof., dr, np, itd., sa rozwijane na pelne formy
+     *
+     */
 
     public String transform(String text){
         text = super.transform(text);
