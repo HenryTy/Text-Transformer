@@ -11,7 +11,7 @@ public class ToLowerTransformer extends TextTransformerDecorator {
     /**
      * konstruktor tworzacy obiekt dekorujacy podany TextTransformer
      *
-     *@param param textTransformer typu TextTransformer
+     *@param textTransformer typu TextTransformer
      */
 
     public ToLowerTransformer(TextTransformer textTransformer) {
@@ -21,7 +21,7 @@ public class ToLowerTransformer extends TextTransformerDecorator {
     /**
      * Metoda zamieniajaca wszystkie litery wystepujace w ciagu do transformacji na male
      *
-     * @param parametr text typu String przechowuje tekst majacy zostac poddany transformacji
+     * @param text typu String przechowuje tekst majacy zostac poddany transformacji
      * @return zwracany jest tekst, ktorego wszystkie litery zostaly zamienione na male
      *
      */
