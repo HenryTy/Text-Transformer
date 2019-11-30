@@ -11,7 +11,7 @@ public class AbbreviationToFullFormTransformer extends TextTransformerDecorator 
     /**
      * konstruktor tworzacy obiekt dekorujacy podany TextTransformer
      *
-     *@param param textTransformer typu TextTransformer
+     *@param textTransformer typu TextTransformer
      */
 
     public AbbreviationToFullFormTransformer(TextTransformer textTransformer) {
@@ -21,7 +21,7 @@ public class AbbreviationToFullFormTransformer extends TextTransformerDecorator 
     /**
      * Metoda rozwijajaca skroty wystepujace w podanym tekscie na pelne formy
      *
-     * @param parametr text typu String przechowuje tekst majacy zostac poddany transformacji
+     * @param text typu String przechowuje tekst majacy zostac poddany transformacji
      * @return zwracany jest tekst, w ktorym wszystkie zdefiniowane skroty: prof., dr, np, itd., sa rozwijane na pelne formy
      *
      */
