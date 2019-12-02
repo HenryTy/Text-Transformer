@@ -113,7 +113,7 @@ public class NumbersToTextTransformer extends TextTransformerDecorator {
                     resultBuilder.insert(0, nastki[b]);
                 }
                 else {
-                    if(newStr.charAt(i) != '0') resultBuilder.insert(0, ' ');
+                    if(newStr.charAt(i) != '0' && newStr.charAt(i + 1) != '0') resultBuilder.insert(0, ' ');
                     resultBuilder.insert(0, dziesiatki[a]);
                 }
             }
