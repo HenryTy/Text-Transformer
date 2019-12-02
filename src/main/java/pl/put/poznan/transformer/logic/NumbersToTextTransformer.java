@@ -6,7 +6,7 @@ public class NumbersToTextTransformer extends TextTransformerDecorator {
         super(textTransformer);
     }
 
-    public static boolean isNumeric(String s) {
+       public static boolean isNumeric(String s) {
         if (s == null || s.equals("")) {
             return false;
         }
@@ -31,7 +31,7 @@ public class NumbersToTextTransformer extends TextTransformerDecorator {
     }
 
     public String poPrzecinku(String str){
-        String[] dziesiatki = {"", "dziesięć", "dwadzieścia", "trzydzieści", "czterdzieści", "pięćdziesiąt", "sześćdziesiąt", "siedemdziesiąt", "osiemdzieciąt", "dziewięćdziesiąt"};
+        String[] dziesiatki = {"", "dziesięć", "dwadzieścia", "trzydzieści", "czterdzieści", "pięćdziesiąt", "sześćdziesiąt", "siedemdziesiąt", "osiemdziesiąt", "dziewięćdziesiąt"};
         String[] nastki = {"dziesięć", "jedenaście", "dwanaście", "trzynaście", "czternaście", "piętnaście", "szesnaście", "siedemnaście", "osiemnaście", "dziewiętnaście"};
         String[] czesci_ulamkowe = {"", "jedna", "dwie", "trzy", "cztery", "pięć", "sześć", "siedem", "osiem", "dziewięć"};
         String[] jednosci = {"", "jeden", "dwie", "trzy", "cztery", "pięć", "sześć", "siedem", "osiem", "dziewięć"};
@@ -62,7 +62,7 @@ public class NumbersToTextTransformer extends TextTransformerDecorator {
             if(a != 0) resultBuilder.append(" ");
             if(a == 0 && b == 1) resultBuilder.append("jedna");
             else resultBuilder.append(jednosci[b]);
-            resultBuilder.append(" ");
+            if(b != 0) resultBuilder.append(" ");
             if(b == 2 || b == 3 || b == 4) resultBuilder.append("setne");
             else if(a == 0 && b == 1) resultBuilder.append("setna");
             else if(a != 0 || b != 0) resultBuilder.append("setnych");
@@ -82,7 +82,7 @@ public class NumbersToTextTransformer extends TextTransformerDecorator {
     public String przedPrzecinkiem(String str){
         String[] setki = {"", "sto", "dwieście", "trzysta", "czterysta", "pięćset", "sześćset", "siedemset", "osiemset", "dziewięćset"};
         String[] nastki = {"dziesięć", "jedenaście", "dwanaście", "trzynaście", "czternaście", "piętnaście", "szesnaście", "siedemnaście", "osiemnaście", "dziewiętnaście"};
-        String[] dziesiatki = {"", "dziesięć", "dwadzieścia", "trzydzieści", "czterdzieści", "pięćdziesiąt", "sześćdziesiąt", "siedemdziesiąt", "osiemdzieciąt", "dziewięćdziesiąt"};
+        String[] dziesiatki = {"", "dziesięć", "dwadzieścia", "trzydzieści", "czterdzieści", "pięćdziesiąt", "sześćdziesiąt", "siedemdziesiąt", "osiemdziesiąt", "dziewięćdziesiąt"};
         String[] jednosci = {"", "jeden", "dwa", "trzy", "cztery", "pięć", "sześć", "siedem", "osiem", "dziewięć"};
 
         StringBuilder resultBuilder = new StringBuilder();
@@ -137,7 +137,7 @@ public class NumbersToTextTransformer extends TextTransformerDecorator {
                     resultBuilder.append(przedPrzecinkiem(word));
                     String pom1 = przedPrzecinkiem(word);
                     String pom2 = poPrzecinku(word);
-                    if(pom1.length() > 0 && !pom2.equals(" ")) resultBuilder.append(" i ");
+                    if(pom1.length() > 0 && pom2.length() > 0) resultBuilder.append(" i ");
                     if(!pom2.equals(" ")) resultBuilder.append(poPrzecinku(word));
                 }
                 else{
