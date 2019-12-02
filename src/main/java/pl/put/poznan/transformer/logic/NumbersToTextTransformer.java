@@ -59,11 +59,13 @@ public class NumbersToTextTransformer extends TextTransformerDecorator {
             int a = newStr.charAt(0) - '0';
             int b = newStr.charAt(1) - '0';
             resultBuilder.append(dziesiatki[a]);
-            resultBuilder.append(" ");
-            resultBuilder.append(jednosci[b]);
+            if(a != 0) resultBuilder.append(" ");
+            if(a == 0 && b == 1) resultBuilder.append("jedna");
+            else resultBuilder.append(jednosci[b]);
             resultBuilder.append(" ");
             if(b == 2 || b == 3 || b == 4) resultBuilder.append("setne");
-            else resultBuilder.append("setnych");
+            else if(a == 0 && b == 1) resultBuilder.append("setna");
+            else if(a != 0 || b != 0) resultBuilder.append("setnych");
         }
         else{
             int a = newStr.charAt(0) - '0';
@@ -116,7 +118,7 @@ public class NumbersToTextTransformer extends TextTransformerDecorator {
                 }
             }
             else if(newStr.length() - 1 - i == 2) {
-                if(newStr.charAt(1) != '0' && newStr.charAt(2) != '0') resultBuilder.insert(0, ' ');
+                if(newStr.charAt(1) != '0' || newStr.charAt(2) != '0') resultBuilder.insert(0, ' ');
                 resultBuilder.insert(0, setki[a]);
             }
         }
@@ -133,9 +135,10 @@ public class NumbersToTextTransformer extends TextTransformerDecorator {
             if (isNumeric(word)) {
                 if(isFloat(word)) {
                     resultBuilder.append(przedPrzecinkiem(word));
-                    String pom = przedPrzecinkiem(word);
-                    if(pom.length() > 0) resultBuilder.append(" i ");
-                    resultBuilder.append(poPrzecinku(word));
+                    String pom1 = przedPrzecinkiem(word);
+                    String pom2 = poPrzecinku(word);
+                    if(pom1.length() > 0 && !pom2.equals(" ")) resultBuilder.append(" i ");
+                    if(!pom2.equals(" ")) resultBuilder.append(poPrzecinku(word));
                 }
                 else{
                     resultBuilder.append(przedPrzecinkiem(word));
