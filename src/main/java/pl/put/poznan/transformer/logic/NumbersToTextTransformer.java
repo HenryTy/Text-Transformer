@@ -70,7 +70,7 @@ public class NumbersToTextTransformer extends TextTransformerDecorator {
         else{
             int a = newStr.charAt(0) - '0';
             resultBuilder.append(czesci_ulamkowe[a]);
-            resultBuilder.append(" ");
+            if(a != 0) resultBuilder.append(" ");
             if(a == 1) resultBuilder.append("dziesiąta");
             else if(a == 2 || a == 3 || a == 4) resultBuilder.append("dziesiąte");
             else if(a != 0) resultBuilder.append("dziesiątych");
