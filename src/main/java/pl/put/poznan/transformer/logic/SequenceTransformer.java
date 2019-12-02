@@ -30,6 +30,8 @@ public class SequenceTransformer {
                 return new AbbreviationToFullFormTransformer(decoratedTransformer);
             case "eliminateDuplicates":
                 return new EliminateDuplicatesTransformer(decoratedTransformer);
+            case "numtext":
+                return new NumbersToTextTransformer(decoratedTransformer);
             default:
                 throw new BadTransformationException("Bad transformation: " + name);
         }
