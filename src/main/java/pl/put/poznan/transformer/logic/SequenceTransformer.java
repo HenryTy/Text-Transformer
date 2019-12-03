@@ -32,6 +32,8 @@ public class SequenceTransformer {
                 return new EliminateDuplicatesTransformer(decoratedTransformer);
             case "numtext":
                 return new NumbersToTextTransformer(decoratedTransformer);
+            case "anagram":
+                return new CheckAnagrams(decoratedTransformer);
             default:
                 throw new BadTransformationException("Bad transformation: " + name);
         }
