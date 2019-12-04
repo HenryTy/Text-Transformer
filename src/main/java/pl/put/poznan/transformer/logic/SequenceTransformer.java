@@ -36,6 +36,8 @@ public class SequenceTransformer {
                 return new CheckAnagrams(decoratedTransformer);
             case "latex":
                 return new ToLatexFormTransformer(decoratedTransformer);
+            case "reverse":
+                return new ReverseTransformer(decoratedTransformer);
             default:
                 throw new BadTransformationException("Bad transformation: " + name);
         }
