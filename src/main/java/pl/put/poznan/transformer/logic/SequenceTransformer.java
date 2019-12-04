@@ -34,6 +34,8 @@ public class SequenceTransformer {
                 return new NumbersToTextTransformer(decoratedTransformer);
             case "anagram":
                 return new CheckAnagrams(decoratedTransformer);
+            case "latex":
+                return new ToLatexFormTransformer(decoratedTransformer);
             default:
                 throw new BadTransformationException("Bad transformation: " + name);
         }
