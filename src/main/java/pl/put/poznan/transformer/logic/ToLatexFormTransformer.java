@@ -5,6 +5,7 @@ public class ToLatexFormTransformer extends TextTransformerDecorator{
         super(textTransformer);
     }
     public String transform(String text){
+        text = super.transform(text);
         char[] text_before = text.toCharArray();
         StringBuilder text_after = new StringBuilder();
         for(int i = 0;i < text_before.length; i++){
