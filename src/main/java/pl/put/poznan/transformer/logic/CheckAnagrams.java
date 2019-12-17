@@ -6,6 +6,7 @@ public class CheckAnagrams extends TextTransformerDecorator {
         super(textTransformer);
     }
     public String transform(String text){
+        text = super.transform(text);
         String[] words = text.split(" ");
         if(words.length != 2){
             return "Podano błędną ilość wyrazów do sprawdzenia";
