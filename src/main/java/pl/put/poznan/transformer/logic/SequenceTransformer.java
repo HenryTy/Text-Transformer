@@ -38,6 +38,10 @@ public class SequenceTransformer {
                 return new ToLatexFormTransformer(decoratedTransformer);
             case "reverse":
                 return new ReverseTransformer(decoratedTransformer);
+            case "distance":
+                return new WordsDistance(decoratedTransformer);
+            case "fullToAbb":
+                return new FullFormToAbbreviationTransformer(decoratedTransformer);
             default:
                 throw new BadTransformationException("Bad transformation: " + name);
         }
