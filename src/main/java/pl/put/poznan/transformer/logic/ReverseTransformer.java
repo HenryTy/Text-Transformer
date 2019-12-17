@@ -5,6 +5,7 @@ public class ReverseTransformer extends TextTransformerDecorator{
         super(textTransformer);
     }
     public String transform(String text){
+        text = super.transform(text);
         StringBuilder result = new StringBuilder();
         boolean[] indexes = new boolean[text.length()];
         char[] text_arr = text.toCharArray();
