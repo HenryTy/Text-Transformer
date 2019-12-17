@@ -2,6 +2,7 @@ package pl.put.poznan.transformer.logic;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.InOrder;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -62,7 +63,7 @@ public class NumbersToTextTransformerTest {
         String textToTransform = "Ala ma sześćset siedemdziesiąt osiem kotów";
         String transformedText = numbersToTextTransformer.transform(textToTransform).trim();
 
-        verify(mockNumberFormatChecker, atLeastOnce()).isNumeric(anyString());
+        verify(mockNumberFormatChecker, times(6)).isNumeric(anyString());
         verify(mockNumberToTextConverter, never()).convertIntegerPart(anyString());
         verify(mockNumberToTextConverter, never()).convertFractionalPart(anyString());
         assertEquals(textToTransform, transformedText);
@@ -73,7 +74,7 @@ public class NumbersToTextTransformerTest {
         String textToTransform = "Ala ma 678 kotów";
         String transformedText = numbersToTextTransformer.transform(textToTransform).trim();
 
-        verify(mockNumberFormatChecker, atLeastOnce()).isNumeric(anyString());
+        verify(mockNumberFormatChecker, times(4)).isNumeric(anyString());
         verify(mockNumberToTextConverter).convertIntegerPart("678");
         verify(mockNumberToTextConverter, never()).convertFractionalPart(anyString());
         assertEquals("Ala ma sześćset siedemdziesiąt osiem kotów", transformedText);
@@ -84,7 +85,9 @@ public class NumbersToTextTransformerTest {
         String textToTransform = "Ala ma 3.14 kota";
         String transformedText = numbersToTextTransformer.transform(textToTransform).trim();
 
-        verify(mockNumberFormatChecker, atLeastOnce()).isFloat(anyString());
+        InOrder inOrder = inOrder(mockNumberFormatChecker);
+        inOrder.verify(mockNumberFormatChecker).isNumeric("3.14");
+        inOrder.verify(mockNumberFormatChecker).isFloat("3.14");
         verify(mockNumberToTextConverter).convertIntegerPart("3.14");
         verify(mockNumberToTextConverter).convertFractionalPart("3.14");
         assertEquals("Ala ma trzy i czternaście setnych kota", transformedText);
