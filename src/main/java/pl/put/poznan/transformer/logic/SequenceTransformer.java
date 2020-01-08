@@ -32,14 +32,10 @@ public class SequenceTransformer {
                 return new EliminateDuplicatesTransformer(decoratedTransformer);
             case "numtext":
                 return new NumbersToTextTransformer(decoratedTransformer);
-            case "anagram":
-                return new CheckAnagrams(decoratedTransformer);
             case "latex":
                 return new ToLatexFormTransformer(decoratedTransformer);
             case "reverse":
                 return new ReverseTransformer(decoratedTransformer);
-            case "distance":
-                return new WordsDistance(decoratedTransformer);
             case "fullToAbb":
                 return new FullFormToAbbreviationTransformer(decoratedTransformer);
             default:

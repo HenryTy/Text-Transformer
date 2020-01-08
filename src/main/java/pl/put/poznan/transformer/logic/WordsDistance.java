@@ -1,12 +1,8 @@
 package pl.put.poznan.transformer.logic;
 
-public class WordsDistance extends TextTransformerDecorator{
+public class WordsDistance implements TextAnalyzer {
 
-    public WordsDistance(TextTransformer textTransformer) {
-        super(textTransformer);
-    }
-
-    public int min(int a, int b, int c){
+    private int min(int a, int b, int c){
         int m = 0;
         if(a <= b && a <= c) m = a;
         if(b <= a && b <= c) m = b;
@@ -14,7 +10,7 @@ public class WordsDistance extends TextTransformerDecorator{
         return m;
     }
 
-    public int LevenshteinDistance(String a ,String b){
+    private int LevenshteinDistance(String a ,String b){
         int m = a.length(), n = b.length();
         int[][] distances = new int[m + 1][n + 1];
 
@@ -47,8 +43,13 @@ public class WordsDistance extends TextTransformerDecorator{
         return distances[m][n];
     }
 
-    public String transform(String text){
+    @Override
+    public String analyze(String text){
         String[] words = text.split(" ");
+        if(words.length != 2) {
+            return "Podano błędną ilość wyrazów do sprawdzenia";
+        }
+
         int d = LevenshteinDistance(words[0], words[1]);
 
         return Integer.toString(d);

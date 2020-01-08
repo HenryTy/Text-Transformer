@@ -1,12 +1,10 @@
 package pl.put.poznan.transformer.logic;
 import java.util.Arrays;
 
-public class CheckAnagrams extends TextTransformerDecorator {
-    public CheckAnagrams(TextTransformer textTransformer) {
-        super(textTransformer);
-    }
-    public String transform(String text){
-        text = super.transform(text);
+public class CheckAnagrams implements TextAnalyzer {
+
+    @Override
+    public String analyze(String text) {
         String[] words = text.split(" ");
         if(words.length != 2){
             return "Podano błędną ilość wyrazów do sprawdzenia";
@@ -16,10 +14,8 @@ public class CheckAnagrams extends TextTransformerDecorator {
                 return "Podane słowa nie są anagramami";
             }
             else{
-                char[] word1 = new char[words[0].length()];
-                char[] word2 = new char[words[1].length()];
-                word1 = words[0].toCharArray();
-                word2 = words[1].toCharArray();
+                char[] word1 = words[0].toCharArray();
+                char[] word2 = words[1].toCharArray();
                 Arrays.sort(word1);
                 Arrays.sort(word2);
                 int pom = 0;
