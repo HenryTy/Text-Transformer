@@ -1,7 +1,21 @@
 package pl.put.poznan.transformer.logic;
 import java.util.Arrays;
 
+/**
+ * Klasa sluzaca do sprawdzania czy dwa podane wyrazy sa anagramami
+ *
+ * @version 1.0
+ */
+
 public class CheckAnagrams implements TextAnalyzer {
+
+    /**
+     * Metoda sluzaca do sprawdzania czy dwa podane wyrazy sa anagramami
+     *
+     * @param text typu String przechowujacy 2 wyrazy oddzielone specja
+     * @return zwracany jest komunikat typu String informujacy czy slowa sa anagramami czy nie
+     *
+     */
 
     @Override
     public String analyze(String text) {
